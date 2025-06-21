@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { axiosInstance } from "../services/fetchJobs";
 import JobCard from "./JobCard";
 import useJobs from "../hooks/useJobs";
 
@@ -7,6 +6,7 @@ export default function JobsList() {
   const { jobList, loader, error } = useJobs();
   const [filterJobs, setFilterJobs] = useState([]);
   const [query, setQuery] = useState("");
+  console.log(filterJobs);
 
   // const filterJobs = jobList.filter((item)=>
   //   item.title.toLowerCase().includes(query.toLowerCase())
@@ -18,7 +18,7 @@ export default function JobsList() {
         item.title.toLowerCase().includes(query.toLowerCase())
       )
     );
-  }, [filterJobs]);
+  }, [query]);
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function JobsList() {
             />
           </div>
           <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filterJobs
+            {query
               ? filterJobs.map((job) => <JobCard key={job.id} job={job} />)
               : jobList.map((job) => <JobCard key={job.id} job={job} />)}
           </div>

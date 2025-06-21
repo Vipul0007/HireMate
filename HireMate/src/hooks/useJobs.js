@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { axiosInstance } from "../services/fetchJobs";
+import { axiosInstance } from "../services/FetchJobs";
 
 export default function useJobs(){
   const [jobList, setJobList] = useState([]);
